@@ -13,20 +13,20 @@ class MarketProvider with ChangeNotifier {
   }
 
   void fetchData() async {
-    List<dynamic> markets = await API.getMarkets();
-
+    List<dynamic> markets2 = await API.getMarkets();
     List<CryptoCurrencyViewModel> temp = [];
-    for (var market in markets) {
+    for (var market in markets2) {
       CryptoCurrencyViewModel newCrypto =
           CryptoCurrencyViewModel.fromJson(market);
       temp.add(newCrypto);
     }
     markets = temp;
+
     isLoading = false;
     notifyListeners();
 
     Timer(
-      const Duration(seconds: 60),
+      const Duration(seconds: 10),
       () {
         fetchData();
         if (kDebugMode) {
